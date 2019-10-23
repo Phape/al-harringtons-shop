@@ -1,0 +1,17 @@
+html {
+    font-family: "Verdana";
+    font-size: 14pt;
+    line-height: 1.6;
+}
+
+@media (min-width: 600px) {
+    html{
+        font-size: 16pt;
+    }
+}
+
+header {
+    padding: 2px;
+    border-bottom: 5px grey solid;
+    background-color: rgba(39, 174, 96,1.0);
+}
