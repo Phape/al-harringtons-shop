@@ -9,29 +9,13 @@ class App {
         this._pages = pages;
         this._currentPage = null;
 
-        this.database = new Database();
+        //this.database = new Database();
     }
 
     run() {
-        // Menü bei Klick auf den Hamburger ein- und ausblenden
-        let menuIcon = document.querySelector("header nav .toggle-menu a");
-        menuIcon.addEventListener("click", this._toggleHambugerMenu);
-
         // Inhalt der ersten Seite darstellen
         this._handleRouting();
-        windows.addEventListener("hashchange", () => this._handleRouting);
-    }
-
-    _toggleHambugerMenu() {
-        let menu = document.querySelector("header nav .menu-right");
-
-        if (menu.classList.contains("small-screen-hidden")) {
-            // Menü war unsichtbar, deshalb jetzt anzeigen
-            menu.classList.remove("small-screen-hidden");
-        } else {
-            // Menü war sichtbar, deshalb jetzt ausblenden
-            menu.classList.add("small-screen-hidden");
-        }
+        window.addEventListener("hashchange", () => this._handleRouting);
     }
 
     /**
@@ -50,7 +34,7 @@ class App {
         let matches = null;
         let page = this._pages.find(p => matches = pageUrl.match(p.url));
 
-        if(!page) {
+        if (!page) {
             console.error('Keine Seite zur URL ${pageUrl} gefunden!');
             return;
         }
@@ -90,17 +74,18 @@ class App {
         let isSubPage = options.isSubPage ? options.isSubPage : false;
 
         // Titel setzen
-        document.querySelectorAll(".page-name").forEach(e => e.textContent = title);
+        //document.querySelectorAll(".page-name").forEach(e => e.textContent = title);
         document.title = `${title} – ${this._title}`;
-
-        // Entscheiden, ob der Zurückbutton angezeigt wird, oder nicht
-        if (isSubPage) {
-            document.querySelector("header nav .go-back").classList.remove("hidden");
-            document.querySelector("header nav .dont-go-back").classList.add("hidden");
-        } else {
-            document.querySelector("header nav .go-back").classList.add("hidden");
-            document.querySelector("header nav .dont-go-back").classList.remove("hidden");
-        }
+        /*
+                // Entscheiden, ob der Zurückbutton angezeigt wird, oder nicht
+                if (isSubPage) {
+                    document.querySelector("header nav .go-back").classList.remove("hidden");
+                    document.querySelector("header nav .dont-go-back").classList.add("hidden");
+                } else {
+                    document.querySelector("header nav .go-back").classList.add("hidden");
+                    document.querySelector("header nav .dont-go-back").classList.remove("hidden");
+                }
+        */
     }
 
     /**
@@ -155,7 +140,7 @@ class App {
      * @param {HTMLElement} element HTML-Element mit dem anzuzeigenden Inhalt
      */
     setPageContent(element) {
-        let container = document.querySelector("#app-main-area");
+        let container = document.querySelector("#main-app-area");
         container.innerHTML = "";
 
         if (!element) return;

@@ -19,11 +19,24 @@ class PageOverview {
         // TODO: Seite anzeigen
         //this._app.database.getAllRecords();
 
-        let mainElement = document.getElementById("app-main-area");
-        mainElement.innerHTML = "<button id='test-button'>Test: Bitte anklicken ...</button>";
+        let html = await fetch("page-overview/page-overview.html");
+        let css = await fetch("page-overview/page-overview.css");
 
-        let testButton = document.getElementById("test-button");
-        testButton.addEventListener("click", this.onTestButtonClicked);
+        if (html.ok && css.ok) {
+            html = await html.text();
+            css = await css.text();
+        } else {
+            console.error("Fehler beim Laden des HTML/CSS-Inhalts");
+            return;
+        }
+
+        let pageDom = document.createElement("div");
+        pageDom.innerHTML = html;
+
+        this._app.setPageTitle("Startseite");
+        this._app.setPageCss(css);
+        this._app.setPageHeader(pageDom.querySelector("header"));
+        this._app.setPageContent(pageDom.querySelector("main"));
     }
 
     onTestButtonClicked() {

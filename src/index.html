@@ -8,13 +8,53 @@
     <!--TODO: eigenes icon einfügen-->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Klasse App: Steuert die gesamte Anwendung -->
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="app.css" />
+
+    <!-- Klassen für die einzelnen App-Seiten -->
+    <script src="page-overview/page-overview.js"></script>
+    <script src="page-detail/page-detail.js"></script>
+    <script src="page-not-found/page-not-found.js"></script>
+
+    <script>
+        window.addEventListener("load", () => {
+            let pages = [{
+                url: "^/$",
+                klass: PageOverview,
+            }, {
+                url: "^/Detail/(.*)$",
+                klass: PageDetail,
+            }, {
+                url: ".*",
+                klass: PageNotFound,
+            }];
+
+            let app = new App("wwwk", pages);
+            app.run();
+        });
+    </script>
     
+    <!-- Dummy-Element für dynamisch nachgeladene CSS-Regeln -->
+    <style id="page-css"></style>
+
 </head>
 
 <body>
     <header>
         <h1>Test</h1>
+        <div class="content">
+            <!-- Hier wird der Kopfbereich der Seiten angezeigt -->
+        </div>
     </header>
+
+
+
+    <main id="main-app-area">
+        <!-- In diesem Bereich werden die Verschiedenen page-Objekte angezeigt -->
+    </main>
+
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
