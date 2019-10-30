@@ -9,9 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <link rel="stylesheet" href="style.css">
 
+    <!-- Google Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+
     <!-- Klasse App: Steuert die gesamte Anwendung -->
     <script src="app.js"></script>
     <link rel="stylesheet" href="app.css" />
+
+    <!-- Klasse Databse: Speichert die statischen Daten -->
+    <script src="database.js"></script>
 
     <!-- Klassen für die einzelnen App-Seiten -->
     <script src="page-overview/page-overview.js"></script>
@@ -19,12 +26,12 @@
     <script src="page-not-found/page-not-found.js"></script>
 
     <script>
-        window.addEventListener("load", () => {
+        window.addEventListener("load", async() => {
             let pages = [{
                 url: "^/$",
                 klass: PageOverview,
             }, {
-                url: "^/Detail/(.*)$",
+                url: "^/Detail/([0-9]*)$",
                 klass: PageDetail,
             }, {
                 url: ".*",
@@ -35,6 +42,7 @@
             app.run();
         });
     </script>
+
     
     <!-- Dummy-Element für dynamisch nachgeladene CSS-Regeln -->
     <style id="page-css"></style>
@@ -54,29 +62,6 @@
     <main id="main-app-area">
         <!-- In diesem Bereich werden die Verschiedenen page-Objekte angezeigt -->
     </main>
-
-
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyApqarP_WMagU8AEGvG6pGdhDGSR5U5UVY",
-            authDomain: "al-harringtons-shop.firebaseapp.com",
-            databaseURL: "https://al-harringtons-shop.firebaseio.com",
-            projectId: "al-harringtons-shop",
-            storageBucket: "al-harringtons-shop.appspot.com",
-            messagingSenderId: "818914740017",
-            appId: "1:818914740017:web:a9b7d692b289bf14fcd210"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
 
 </body>
 

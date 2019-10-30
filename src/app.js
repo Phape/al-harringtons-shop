@@ -9,13 +9,14 @@ class App {
         this._pages = pages;
         this._currentPage = null;
 
-        //this.database = new Database();
+        this.database = new Database();
+        database.createDemoData();
     }
 
     run() {
         // Inhalt der ersten Seite darstellen
         this._handleRouting();
-        window.addEventListener("hashchange", () => this._handleRouting);
+        window.addEventListener("hashchange", () => this._handleRouting());
     }
 
     /**
