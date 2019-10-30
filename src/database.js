@@ -26,31 +26,17 @@ class Database {
         this._db = firebase.firestore();
         this._produkte = this._db.collection("produkte");
 
-        _db.collection("produkte").add({
-            id: 1
-        })
-        .then(function(docRef) {
-            console.log("Dokument geschrieben mit ID: ", docRef.id);
-        })
-        .catch(function(error) {
-            HTMLFormControlsCollection.error("Fehler beim Hinzufügen: ", error);
-        });
     }
 
-    async speichereProdukte(produkte) {
-        let batch = this._db.batch();
-
+    speichereProdukte(produkte) {
         produkte.forEach(produkt => {
-            let dbProdukt = this._produkte.doc(produkt.id);
-            batch.set(dbProdukt, produkt);
+            this._db.collection("produkte").add(produkt)
         });
-
-        return batch.commit();
     }
 
     async createDemoData() {
 
-        this.saveProdukte([{
+        this.speichereProdukte([{
             "authors": "Peter Pohmann",
             "edition": "1. Auflage",
             "id": "cpp17",
@@ -96,10 +82,10 @@ class Database {
 
     }
 
-    
+
 
     async selectAllProdukte() {
-        let result = await this._produkte.orderBy("title").get();
+        let result = await this._produkte.get();
         let produkte = [];
 
         result.forEach(entry => {
@@ -119,13 +105,5 @@ class Database {
     getRecordById(id) {
         id = parseInt(id);
         return this._data.find(r => r.id === id);
-    }
-
-    /**
-     * Diese Methode gibt eine Liste mit allen Datensätzen zurück.
-     * @return {Array} Liste aller Datensätze
-     */
-    getAllRecords() {
-        return this._data;
     }
 }

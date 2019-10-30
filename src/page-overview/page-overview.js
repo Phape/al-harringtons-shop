@@ -33,13 +33,29 @@ class PageOverview {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
+        this._renderBoatTiles(pageDom);
+
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
     }
 
-    onTestButtonClicked() {
-        alert("Test bestanden. Schönen Feierabend!");
+    async _renderBoatTiles(pageDom) {
+        let mainElement = pageDom.querySelector("main");
+        let templateElement = pageDom.querySelector("#template-tile");
+
+        let produkte = await this._app.database.selectAllProdukte();
+        console.log(produkte);
+        produkte.forEach(buch => {
+            let html = templateElement.innerHTML;
+            // html = html.replace("{HREF}", `#/Detail/${buch.id}`);
+            // html = html.replace("{IMG}", buch.img);
+            html = html.replace("{NAME}", buch.name);
+
+            mainElement.innerHTML += html;
+        });
     }
+
+    
 }
