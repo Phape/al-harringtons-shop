@@ -24,6 +24,7 @@
     <script src="page-overview/page-overview.js"></script>
     <script src="page-detail/page-detail.js"></script>
     <script src="page-not-found/page-not-found.js"></script>
+    <script src="page-add-product/page-add-product.js"></script>
 
     <script>
         window.addEventListener("load", async() => {
@@ -36,6 +37,9 @@
             }, {
                 url: ".*",
                 klass: PageNotFound,
+            }, {
+                url: "^/addProduct",
+                klass: AddProduct,
             }];
 
             let app = new App("wwwk", pages);

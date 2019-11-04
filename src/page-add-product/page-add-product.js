@@ -1,9 +1,9 @@
 "use strict";
 
 /**
- * Klasse PageOverview: Stellt die Startseite der App zur Verfügung
+ * Klasse AddProduct: Kann ein Produkt hinzufügen
  */
-class PageOverview {
+class AddProduct {
     /**
      * Konstruktor
      * @param {App} app Zentrale Instanz der App-Klasse
@@ -16,11 +16,8 @@ class PageOverview {
      * Seite anzeigen. Wird von der App-Klasse aufgerufen.
      */
     async show() {
-        // TODO: Seite anzeigen
-        //this._app.database.getAllRecords();
-
-        let html = await fetch("page-overview/page-overview.html");
-        let css = await fetch("page-overview/page-overview.css");
+        let html = await fetch("page-add-product/page-add-product.html");
+        let css = await fetch("page-add-product/page-add-product.css");
 
         if (html.ok && css.ok) {
             html = await html.text();
@@ -33,9 +30,9 @@ class PageOverview {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        await this._renderTiles(pageDom);
+        // await this._renderTiles(pageDom);
         
-        this._app.setPageTitle("Startseite");
+        this._app.setPageTitle("Produkt hinzufügen");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));

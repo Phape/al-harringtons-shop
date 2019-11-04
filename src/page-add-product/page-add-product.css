@@ -1,8 +1,8 @@
 /**
- * Stylesheet zur Klasse PageOverview: Startseite der App
+ * Stylesheet zur Klasse AddProduct
  */
 
-.tile {
+ .tile {
     display: inline-block;
 
     border: 1px solid lightgrey;
@@ -32,9 +32,4 @@
     background: white;
     transform: scale(1.01) rotate(0.5deg);
     cursor: pointer;
-}
-
-#addProduct {
-    color: red;
-    float: right;
 }

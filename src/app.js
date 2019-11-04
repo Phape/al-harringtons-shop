@@ -16,6 +16,7 @@ class App {
         // Inhalt der ersten Seite darstellen
         this._handleRouting();
         window.addEventListener("hashchange", () => this._handleRouting());
+        // this.database.createDemoData(); //Demodaten anlegen (nur 1x, dann auskommentieren!)
     }
 
     /**
