@@ -27,7 +27,7 @@
     <script src="page-add-product/page-add-product.js"></script>
 
     <script>
-        window.addEventListener("load", async() => {
+        window.addEventListener("load", async () => {
             let pages = [{
                 url: "^/$",
                 klass: PageOverview,
@@ -35,11 +35,11 @@
                 url: "^/Detail/([0-9]*)$",
                 klass: PageDetail,
             }, {
+                url: "^/addProduct$",
+                klass: AddProduct,
+            }, {
                 url: ".*",
                 klass: PageNotFound,
-            }, {
-                url: "^/addProduct",
-                klass: AddProduct,
             }];
 
             let app = new App("wwwk", pages);
@@ -47,7 +47,7 @@
         });
     </script>
 
-    
+
     <!-- Dummy-Element für dynamisch nachgeladene CSS-Regeln -->
     <style id="page-css"></style>
 
@@ -55,7 +55,7 @@
 
 <body>
     <header>
-        <h1>Test</h1>
+        <h1><a href="index.html"><img src="house.svg"></a>Al-Harringtons WWWK-Shop</h1>
         <div class="content">
             <!-- Hier wird der Kopfbereich der Seiten angezeigt -->
         </div>

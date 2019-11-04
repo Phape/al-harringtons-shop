@@ -25,9 +25,9 @@ html {
     font-size: 14pt;
     line-height: 1.6;
 
-    /* https://pixabay.com/photos/ship-boat-lake-sailing-boat-italy-952292/ */
+    /* https://pixabay.com/photos/brick-wall-pattern-texture-white-2172682/ */
     background-color: black;
-    background-image: url(background.jpg);
+    background-image: url(background3.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -159,6 +159,11 @@ header .content h1 {
     font-size: 150%;
 }
 
+header h1 img {
+    margin-right: 5px;
+    height: 0.9em;
+}
+
 header .content h2 {
     font-size: 110%;
 }
@@ -208,7 +213,7 @@ header .content h6 {
  */
 main {
     padding: var(--content-padding);
-    background: rgba(240,240,240, 0.9);
+    background: rgba(97, 97, 97, 0.3);
     flex: 1;
 }
 
