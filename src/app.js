@@ -10,15 +10,12 @@ class App {
         this._currentPage = null;
 
         this.database = new Database();
-        this.database.createDemoData();
     }
 
     run() {
         // Inhalt der ersten Seite darstellen
         this._handleRouting();
         window.addEventListener("hashchange", () => this._handleRouting());
-
-        this.database.createDemoData();
     }
 
     /**

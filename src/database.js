@@ -34,8 +34,8 @@ class Database {
         });
     }
 
+    // Diese Methode in der run() Methode von app.js aufrufen (ggf.)
     async createDemoData() {
-
         this.speichereProdukte([{
             "authors": "Peter Pohmann",
             "edition": "1. Auflage",
@@ -82,17 +82,17 @@ class Database {
 
     }
 
-
-
     async selectAllProdukte() {
         let result = await this._produkte.get();
         let produkte = [];
-
+        console.log('result', result);
         result.forEach(entry => {
             let produkt = entry.data();
+            console.log('produkt', produkt);
+            console.log('entry', entry);
             produkte.push(produkt);
         });
-
+        console.log('produkte', produkte);
         return produkte;
     }
     /**

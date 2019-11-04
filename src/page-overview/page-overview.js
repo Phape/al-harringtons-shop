@@ -33,7 +33,7 @@ class PageOverview {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._renderBoatTiles(pageDom);
+        await this._renderTiles(pageDom);
 
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
@@ -41,21 +41,19 @@ class PageOverview {
         this._app.setPageContent(pageDom.querySelector("main"));
     }
 
-    async _renderBoatTiles(pageDom) {
+    async _renderTiles(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
 
         let produkte = await this._app.database.selectAllProdukte();
-        console.log(produkte);
-        produkte.forEach(buch => {
+        console.log('produkte 2', produkte);
+        produkte.forEach(produkt => {
             let html = templateElement.innerHTML;
             // html = html.replace("{HREF}", `#/Detail/${buch.id}`);
             // html = html.replace("{IMG}", buch.img);
-            html = html.replace("{NAME}", buch.name);
+            html = html.replace("{NAME}", produkt.title);
 
             mainElement.innerHTML += html;
         });
-    }
-
-    
+    }    
 }
