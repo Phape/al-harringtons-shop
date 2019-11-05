@@ -56,8 +56,4 @@ class AddProduct {
             mainElement.innerHTML += html;
         });
     }    
-
-    _onAddButtonClicked() {
-        window.alert("Der Button funzt");
-    }
 }
