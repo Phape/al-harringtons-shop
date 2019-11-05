@@ -39,9 +39,6 @@ class PageOverview {
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
-
-        let addProductButton = document.getElementById("addProduct");
-        addProductButton.addEventListener("click", this._onAddButtonClicked);
     }
 
     async _renderTiles(pageDom) {
@@ -58,9 +55,5 @@ class PageOverview {
 
             mainElement.innerHTML += html;
         });
-    }    
-
-    _onAddButtonClicked() {
-        window.alert("Der Button funzt");
     }
 }
