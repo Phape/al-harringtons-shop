@@ -28,20 +28,18 @@ class Database {
 
     }
 
-    speichereProdukte(produkte) {
-        produkte.forEach(produkt => {
-            this._db.collection("produkte").add(produkt)
-        });
+    speichereProdukt(produkt) {
+        this._db.collection("produkte").add(produkt);
     }
 
     // Diese Methode in der run() Methode von app.js aufrufen (ggf.)
     async createDemoData() {
-        this.speichereProdukte([{
+        this.speichereProdukt({
             "name": "WWWK Blau",
             "aktikelbeschreibung": "Dies ist der hervorragender WWWK in der wunderschönen Farbe BLAU",
             "preis": "3€",
             "besonderheit": "Er hat die Farbe Meeresblau"
-        }]);
+        });
     }
 
     async selectAllProdukte() {

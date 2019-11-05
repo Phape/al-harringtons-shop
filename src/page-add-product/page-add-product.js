@@ -31,29 +31,44 @@ class AddProduct {
         pageDom.innerHTML = html;
 
         // await this._renderTiles(pageDom);
-        
+
         this._app.setPageTitle("Produkt hinzufügen");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
 
-        let addProductButton = document.getElementById("addProduct");
+        let addProductButton = document.getElementById("produkt-hinzufügen");
         addProductButton.addEventListener("click", this._onAddButtonClicked);
+
     }
+    /*
+        async _renderTiles(pageDom) {
+            let mainElement = pageDom.querySelector("main");
+            let templateElement = pageDom.querySelector("#template-tile");
+    
+            let produkte = await this._app.database.selectAllProdukte();
+            console.log('produkte 2', produkte);
+            produkte.forEach(produkt => {
+                let html = templateElement.innerHTML;
+                // html = html.replace("{HREF}", `#/Detail/${buch.id}`);
+                // html = html.replace("{IMG}", buch.img);
+                html = html.replace("{NAME}", produkt.name);
+    
+                mainElement.innerHTML += html;
+            });
+        }    
+    */
+    async _onAddButtonClicked() {
+        let name = document.getElementById("namenstextfeld").value;
+        let beschreibung = document.getElementById("beschreibungstextfeld").value;
+        let preis = document.getElementById("preis").value;
+        let besonderheit = document.getElementById("besonderheit").value;
+        console.log("Digga", name, beschreibung, preis, besonderheit);
 
-    async _renderTiles(pageDom) {
-        let mainElement = pageDom.querySelector("main");
-        let templateElement = pageDom.querySelector("#template-tile");
+        let produkt = { 'name': name, 'beschreibung': beschreibung, 'preis': preis, 'besonderheit': besonderheit };
+        
+        this._app.database.speichereProdukt(produkt);
+        /* TODO: herausfinden, wie wir an dieser Stelle auf die DB zugreifen können */
 
-        let produkte = await this._app.database.selectAllProdukte();
-        console.log('produkte 2', produkte);
-        produkte.forEach(produkt => {
-            let html = templateElement.innerHTML;
-            // html = html.replace("{HREF}", `#/Detail/${buch.id}`);
-            // html = html.replace("{IMG}", buch.img);
-            html = html.replace("{NAME}", produkt.name);
-
-            mainElement.innerHTML += html;
-        });
-    }    
+    }
 }
