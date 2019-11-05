@@ -34,7 +34,7 @@ class PageOverview {
         pageDom.innerHTML = html;
 
         await this._renderTiles(pageDom);
-        
+
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
@@ -55,5 +55,5 @@ class PageOverview {
 
             mainElement.innerHTML += html;
         });
-    }
+    }    
 }
