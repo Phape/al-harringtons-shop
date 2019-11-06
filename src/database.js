@@ -35,6 +35,7 @@ class Database {
     // Diese Methode in der run() Methode von app.js aufrufen (ggf.)
     async createDemoData() {
         this.speichereProdukt({
+            "artikelnummer": "1",
             "name": "WWWK Blau",
             "aktikelbeschreibung": "Dies ist der hervorragender WWWK in der wunderschönen Farbe BLAU",
             "preis": "3€",
@@ -48,8 +49,6 @@ class Database {
         console.log('result', result);
         result.forEach(entry => {
             let produkt = entry.data();
-            console.log('produkt', produkt);
-            console.log('entry', entry);
             produkte.push(produkt);
         });
         console.log('produkte', produkte);
@@ -62,8 +61,29 @@ class Database {
      * @param  {Number} id Datensatz-ID
      * @return {Object} Gefundener Datensatz
      */
-    getRecordById(id) {
-        id = parseInt(id);
-        return this._data.find(r => r.id === id);
+    async findeProdukt(id) {
+        //TODO: Fehlermeldung ausgeben, wenn Produkt nicht gefunden wurde (siehe Firestore doc)
+        // id = parseInt(id);
+        // id = 1;
+        console.log('id', { id });
+        let querySnapshot = await this._produkte.where("artikelnummer", "==", id).get();
+        // querySnapshot.forEach(el => console.log('simon', el.data()));
+        let results = [];
+        querySnapshot.forEach(el => results.push(el.data()));
+        // result = result.data();
+        console.log("gefundenes Produkt: ", results[0]);
+        console.log("result.length: ", results.length);
+
+        return results[0];
     }
+
+    async pruefeVorhanden(artikelnummer) {
+        let querySnapshot = await this._produkte.where("artikelnummer", "==", artikelnummer).get();
+        let results = [];
+        querySnapshot.forEach(el => results.push(el.data()));
+        console.log("result.length: ", results.length);
+
+        return results.length >= 1;
+    }
+
 }

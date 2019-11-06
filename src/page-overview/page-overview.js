@@ -39,6 +39,7 @@ class PageOverview {
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
+
     }
 
     async _renderTiles(pageDom) {
@@ -46,11 +47,10 @@ class PageOverview {
         let templateElement = pageDom.querySelector("#template-tile");
 
         let produkte = await this._app.database.selectAllProdukte();
-        console.log('produkte 2', produkte);
         produkte.forEach(produkt => {
             let html = templateElement.innerHTML;
-            // html = html.replace("{HREF}", `#/Detail/${buch.id}`);
-            // html = html.replace("{IMG}", buch.img);
+            html = html.replace("{HREF}", `#/Detail/${produkt.artikelnummer}`);
+            html = html.replace("{IMG}", produkt.bild_adresse);
             html = html.replace("{NAME}", produkt.name);
 
             mainElement.innerHTML += html;

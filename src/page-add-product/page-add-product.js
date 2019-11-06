@@ -30,45 +30,36 @@ class AddProduct {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        // await this._renderTiles(pageDom);
-
         this._app.setPageTitle("Produkt hinzufügen");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
+        // console.log("findeProdukt", await this._app.database.findeProdukt("1"));
+
 
         let addProductButton = document.getElementById("produkt-hinzufügen");
-        addProductButton.addEventListener("click", this._onAddButtonClicked);
-
+        addProductButton.addEventListener("click", () => this._onAddButtonClicked());
     }
-    /*
-        async _renderTiles(pageDom) {
-            let mainElement = pageDom.querySelector("main");
-            let templateElement = pageDom.querySelector("#template-tile");
-    
-            let produkte = await this._app.database.selectAllProdukte();
-            console.log('produkte 2', produkte);
-            produkte.forEach(produkt => {
-                let html = templateElement.innerHTML;
-                // html = html.replace("{HREF}", `#/Detail/${buch.id}`);
-                // html = html.replace("{IMG}", buch.img);
-                html = html.replace("{NAME}", produkt.name);
-    
-                mainElement.innerHTML += html;
-            });
-        }    
-    */
+
     async _onAddButtonClicked() {
+        let artikelnummer = document.getElementById("artikelnummertextfeld").value;
         let name = document.getElementById("namenstextfeld").value;
         let beschreibung = document.getElementById("beschreibungstextfeld").value;
-        let preis = document.getElementById("preis").value;
-        let besonderheit = document.getElementById("besonderheit").value;
-        console.log("Digga", name, beschreibung, preis, besonderheit);
+        let preis = document.getElementById("preistextfeld").value;
+        let besonderheit = document.getElementById("besonderheitstextfeld").value;
+        let bild_adresse = document.getElementById("bild_adresse").value;
 
-        let produkt = { 'name': name, 'beschreibung': beschreibung, 'preis': preis, 'besonderheit': besonderheit };
-        
-        this._app.database.speichereProdukt(produkt);
-        /* TODO: herausfinden, wie wir an dieser Stelle auf die DB zugreifen können */
+        let produkt = { artikelnummer, name, beschreibung, preis, besonderheit, bild_adresse };
+        console.log("Das ist ein weiter log:", produkt);
 
+        let test = await this._app.database.pruefeVorhanden(artikelnummer);
+        console.log("bereits vorhanden: ", test);
+        if (test) {
+            window.alert("Artikelnummer bereits vorhanden")
+        }
+        else {
+            this._app.database.speichereProdukt(produkt);
+        }
     }
+
 }

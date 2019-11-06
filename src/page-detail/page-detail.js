@@ -20,7 +20,9 @@ class PageDetail {
     async show(matches) {
         // URL-Parameter auswerten
         this._recordId = matches[1];
-        this._data = this._app.database.getRecordById(this._recordId);
+        console.log("recordId:", this._recordId);
+        this._data = await this._app.database.findeProdukt(this._recordId);
+        console.log(this._data);
 
         // Anzuzeigenden Seiteninhalt nachladen
         let html = await fetch("page-detail/page-detail.html");
@@ -35,49 +37,45 @@ class PageDetail {
         }
 
         // Seite zur Anzeige bringen
-        let pageDom = this._processTemplate(html);
+        let pageDom = await this._processTemplate(html);
 
-        this._app.setPageTitle(`Segelschiff ${this._data.name}`, {isSubPage: true});
+        this._app.setPageTitle(`${this._data.name}`, { isSubPage: true });
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
     }
 
-     /**
-     * Hilfsmethode, welche den HTML-Code der eingelesenen HTML-Datei bearbeitet
-     * und anhand der eingelesenen Daten ergänzt. Zusätzlich wird hier ein
-     * Event Handler für den Button registriert.
-     *
-     * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
-     * mit den HTML-Templates dieser Seite.
-     */
-    _processTemplate(html) {
+    /**
+    * Hilfsmethode, welche den HTML-Code der eingelesenen HTML-Datei bearbeitet
+    * und anhand der eingelesenen Daten ergänzt. Zusätzlich wird hier ein
+    * Event Handler für den Button registriert.
+    *
+    * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
+    * mit den HTML-Templates dieser Seite.
+    */
+    async _processTemplate(html) {
         // Platzhalter mit den eingelesenen Daten ersetzen
-        html = html.replace(/{IMG}/g, this._data.img);
+        html = html.replace(/{IMG}/g, this._data.bild_adresse);
         html = html.replace(/{NAME}/g, this._data.name);
-        html = html.replace(/{TYP}/g, this._data.typ);
-        html = html.replace(/{STAPELLAUF}/g, this._data.stapellauf);
-        html = html.replace(/{VERBLEIB}/g, this._data.verbleib);
-        html = html.replace(/{LINK}/g, this._data.link);
+        html = html.replace(/{ARTIKELBESCHREIBUNG}/g, this._data.beschreibung);
+        html = html.replace(/{PREIS}/g, this._data.preis);
+        html = html.replace(/{BESONDERHEIT}/g, this._data.besonderheit);
+        html = html.replace(/{ARTIKELNUMMER}/g, this._data.artikelnummer);
 
         // HTML-Template in echte DOM-Objekte umwandeln, damit wir es mit den
         // DOM-Methoden von JavaScript weiterbearbeiten können
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        // Event Handler für den Button registrieren
-        pageDom.querySelectorAll(".id").forEach(e => e.textContent = this._recordId);
-        pageDom.querySelector("#show-more-button").addEventListener("click", () => this._onShowMoreButtonClicked());
+        // Event Handler für den Warenkorb Button registrieren
+        pageDom.querySelector("#add-to-warenkorb-button").addEventListener("click", () => this._onAddToWarenkorbClicked());
 
         // Fertig bearbeitetes HTML-Element zurückgeben
         return pageDom;
     }
 
-    /**
-     * Beispiel für einen einfachen Event Handler, der bei Klick auf einen
-     * Button aufgerufen wird.
-     */
-    _onShowMoreButtonClicked() {
-        alert(this._data.name);
+    //Warenkorb Button Funktion
+    _onAddToWarenkorbClicked() {
+        alert(this._data.name + " wurde zum Warenkorb hinzugefügt");
     }
 }

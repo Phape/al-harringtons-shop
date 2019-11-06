@@ -34,6 +34,7 @@ class App {
         // Zur URL passende Seite ermitteln (anhand RegEx)
         let matches = null;
         let page = this._pages.find(p => matches = pageUrl.match(p.url));
+        console.log("handlerouting", page );
 
         if (!page) {
             console.error('Keine Seite zur URL ${pageUrl} gefunden!');
