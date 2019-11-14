@@ -56,3 +56,21 @@ main > img {
     padding: 0.25em;
     background: rgb(250, 250, 250);
 }
+
+#add-to-warenkorb-button {
+    /* font-size: 20px; */
+  background: white;
+  border: 2px solid rgb(0, 0, 0);
+  font-family: "monsterrat", sans-serif;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  margin: 10px;
+  cursor: pointer;
+  transition: color 0.4s linear;
+  position: relative;
+}
+
+#add-to-warenkorb-button:hover {
+    font-weight: bolder;
+    box-shadow: 0px 0px 5px black;
+  }

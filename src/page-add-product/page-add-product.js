@@ -57,7 +57,7 @@ class AddProduct {
         }
         else {
             this._app.database.speichereProdukt(produkt);
-            document.querySelector("input").value = "";
+            document.querySelectorAll("input").forEach(element => element.value="");
             window.alert("Produkt angelegt");
         }
     }

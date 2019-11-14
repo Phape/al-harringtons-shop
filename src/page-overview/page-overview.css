@@ -2,6 +2,10 @@
  * Stylesheet zur Klasse PageOverview: Startseite der App
  */
 
+ h1 {
+     display: inline-block;
+ }
+
 .tile {
     display: inline-block;
 
@@ -15,8 +19,8 @@
 }
 
 .tile img {
-    width: 20em;
-    height: 20em;
+    width: 10em;
+    height: 10em;
     max-width: 100%;
     object-fit: cover;
     display: block;
@@ -36,4 +40,20 @@
 
 #addProduct {
     float: right;
-}
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 0;
+    background: white;
+    border: 2px solid rgb(0, 0, 0);
+    font-family: "monsterrat", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.4s linear;
+    position: relative;
+  }
+  
+  #addProduct:hover {
+    font-weight: bolder;
+    box-shadow: 0px 0px 5px black;
+  }

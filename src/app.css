@@ -77,7 +77,10 @@ header {
     --icon-color: rgb(0, 90, 115);
 }
 header .icon {
-    height: 1em;
+    height: 1.5em;
+    padding-top: 12px;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
 }
 
 
@@ -85,6 +88,7 @@ header .permanent-header ul {
     list-style: none;
     margin: 0.2em;
     padding: 0;
+    display: inline-flex;
 }
 
 header .permanent-header li {
