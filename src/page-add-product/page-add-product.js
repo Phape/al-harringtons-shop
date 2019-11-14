@@ -37,7 +37,7 @@ class AddProduct {
         // console.log("findeProdukt", await this._app.database.findeProdukt("1"));
 
 
-        let addProductButton = document.getElementById("produkt-hinzufügen");
+        let addProductButton = document.getElementById("produkt-hinzufuegen");
         addProductButton.addEventListener("click", () => this._onAddButtonClicked());
     }
 
@@ -50,15 +50,15 @@ class AddProduct {
         let bild_adresse = document.getElementById("bild_adresse").value;
 
         let produkt = { artikelnummer, name, beschreibung, preis, besonderheit, bild_adresse };
-        console.log("Das ist ein weiter log:", produkt);
 
         let test = await this._app.database.pruefeVorhanden(artikelnummer);
-        console.log("bereits vorhanden: ", test);
         if (test) {
             window.alert("Artikelnummer bereits vorhanden")
         }
         else {
             this._app.database.speichereProdukt(produkt);
+            document.querySelector("input").value = "";
+            window.alert("Produkt angelegt");
         }
     }
 
