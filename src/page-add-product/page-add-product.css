@@ -2,11 +2,6 @@
  * Stylesheet zur Klasse AddProduct
  */
 
-main {
-  margin: 0;
-  padding: 0;
-}
-
 .middle {
   position: absolute;
   left: 50%;
@@ -14,9 +9,15 @@ main {
   text-align: center;
 }
 
-input[type="submit"] {
+.label {
+  /* background-color: white; */
+  color: lightgray;
+  text-shadow: 0px 0px 5px black;
+}
+
+#produkt-hinzufuegen {
   /* font-size: 20px; */
-  background: none;
+  background: white;
   border: 2px solid rgb(0, 0, 0);
   font-family: "monsterrat", sans-serif;
   text-transform: uppercase;
@@ -27,28 +28,10 @@ input[type="submit"] {
   position: relative;
 }
 
-input[type="submit"]:hover {
-  color: rgb(255, 255, 255);
-}
-
-input[type="submit"]::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100;
-  background: rgb(0, 0, 0);
-  z-index: -1;
-  transition: transform 0.5s;
-  transform-origin: 0 0;
-  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
-  transform: scaleX(0);
-}
-/* Hovering funzt nicht ganz, Animation fehlt leider noch */
-
-input[type="submit"]:hover::before {
-  transform: scaleX(1);
+#produkt-hinzufuegen:hover {
+  /* color: green; */
+  font-weight: bolder;
+  box-shadow: 0px 0px 5px black;
 }
 
 input[type="text"] {
@@ -57,7 +40,8 @@ input[type="text"] {
   box-sizing: border-box;
   border: 2px solid rgb(100, 100, 100);
   border-radius: 4px;
-  background-color: balck; /* Wie macht man die Kästchen schwarz? */
+  background-color: white;
+  box-shadow: 0px 0px 5px black;
 }
 
 input[type="text"]:focus {
