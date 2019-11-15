@@ -43,6 +43,9 @@ class PageDetail {
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
+
+        document.querySelector("#hinzugefuegt-popup").style.display = "none";
+
     }
 
     /**
@@ -68,7 +71,7 @@ class PageDetail {
         pageDom.innerHTML = html;
 
         // Event Handler für den Warenkorb Button registrieren
-        pageDom.querySelector("#add-to-warenkorb-button").addEventListener("click", () => this._onAddToWarenkorbClicked());
+        pageDom.querySelector("#add-to-warenkorb-button").addEventListener("click", () => this._onAddToWarenkorbClicked()); 
 
         // Fertig bearbeitetes HTML-Element zurückgeben
         return pageDom;
@@ -76,6 +79,12 @@ class PageDetail {
 
     //Warenkorb Button Funktion
     _onAddToWarenkorbClicked() {
-        alert(this._data.name + " wurde zum Warenkorb hinzugefügt");
+        // alert(this._data.name + " wurde zum Warenkorb hinzugefügt");
+            document.querySelector("#hinzugefuegt-popup").style.display = "block";
+            window.setTimeout(() => this._closePopup("#hinzugefuegt-popup"), 3000);
+    }
+
+    _closePopup(popup) {
+        document.querySelector(popup).style.display = "none";
     }
 }

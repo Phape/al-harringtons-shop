@@ -16,6 +16,7 @@
 
     transition: transform 0.5s, background 0.5s;
     transform: scale(1);
+    border-radius: 5px;
 }
 
 .tile img {
@@ -24,6 +25,7 @@
     max-width: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 5px;
 }
 
 .tile a,
@@ -51,6 +53,9 @@
     cursor: pointer;
     transition: color 0.4s linear;
     position: relative;
+    border-radius: 5px;
+    background: rgb(37, 88, 148);
+    color: white;
   }
   
   #addProduct:hover {

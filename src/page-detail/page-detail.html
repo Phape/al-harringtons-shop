@@ -1,41 +1,44 @@
 <header>
     <div class="page-heading">
-        <img src="{IMG}" alt="" />
-            <h1>{NAME}</h1>
+        <h1>{NAME}</h1>
     </div>
 
 </header>
 
 <main>
-    <div class="beschreibung">
-        <div class="feld">
-            <div class="beschriftung">
-                Artikelbeschreibung:
-            </div>
-            <div class="wert">
-                {ARTIKELBESCHREIBUNG}
-            </div>
+    <div class="karte">
+        <div class="bild">
+            <img src="{IMG}" alt="" />
         </div>
+        <div class="beschreibung">
+            <div class="feld">
+                <div class="beschriftung">
+                    Artikelbeschreibung:
+                </div>
+                <div class="wert">
+                    {ARTIKELBESCHREIBUNG}
+                </div>
+            </div>
 
-        <div class="feld">
-            <div class="beschriftung">
-                Preis:
+            <div class="feld">
+                <div class="beschriftung">
+                    Preis:
+                </div>
+                <div class="wert">
+                    {PREIS}
+                </div>
             </div>
-            <div class="wert">
-                {PREIS}
-            </div>
-        </div>
 
-        <div class="feld">
-            <div class="beschriftung">
-                Besonderheit:
+            <div class="feld">
+                <div class="beschriftung">
+                    Besonderheit:
+                </div>
+                <div class="wert">
+                    {BESONDERHEIT}
+                </div>
             </div>
-            <div class="wert">
-                {BESONDERHEIT}
-            </div>
-        </div>
-        
-        <div class="feld">
+
+            <div class="feld">
                 <div class="beschriftung">
                     Artikelnummer:
                 </div>
@@ -43,15 +46,13 @@
                     {ARTIKELNUMMER}
                 </div>
             </div>
+            <button id="add-to-warenkorb-button">Zum Warenkorb hinzufügen</button>
+        </div>
     </div>
 
-
-    <img src="{IMG}" alt="" />
-
-    <p>
-        Hier sollten irgendwelche Details zum Segelschiff {NAME} stehen. <br />
-        Stattdessen gibt es hier nur einen Link zum
-        <!-- <a href="{LINK}" target="_blank">Wikipedia-Artikel</a>. -->
-    </p>
-    <button id="add-to-warenkorb-button">Zum Warenkorb hinzufügen</button>
+    <div id="hinzugefuegt-popup" class="einblenden">
+        <div class="hintergrund">
+            <p>Das Produkt wurde hinzugefügt</p>
+        </div>
+    </div>
 </main>

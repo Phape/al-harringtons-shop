@@ -76,6 +76,7 @@ header {
     --text-color: white;
     --icon-color: rgb(0, 90, 115);
 }
+/* Home Button */
 header .icon {
     height: 1.5em;
     padding-top: 12px;
@@ -99,7 +100,7 @@ header .permanent-header li {
 
 /* Kopfinhalt der Seite */
 header .content {
-    padding: var(--content-padding);
+    padding: 10px;
     background: white;
     border: 0px solid lightgrey;
     border-bottom-width: 1px;
@@ -175,6 +176,7 @@ main {
     padding: var(--content-padding);
     background: rgba(97, 97, 97, 0.3);
     flex: 1;
+    max-width: 100%;
 }
 
 main a,

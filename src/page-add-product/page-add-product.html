@@ -14,7 +14,8 @@
 
         <!-- Beschreibungstextfeld sollte Zeilenumbrüche bei längeren Texten erzeugen -->
         <p class="label">Beschreibung des Produktes:</p>
-        <input type="text" id="beschreibungstextfeld" class="long-text" name="Artikelbeschreibung" data placeholder="Beschreibung">
+        <input type="text" id="beschreibungstextfeld" class="long-text" name="Artikelbeschreibung" data
+            placeholder="Beschreibung">
 
         <p class="label">Preis des Produktes:</p>
         <input type="text" id="preistextfeld" name="Preis" data placeholder="Preis">
@@ -26,6 +27,25 @@
         <input type="text" id="bild_adresse" name="Bildadresse" data placeholder="Bildadresse">
 
         <br>
-        <button id="produkt-hinzufuegen" type="button">Produkt hinzufügen</button> 
+        <button id="produkt-hinzufuegen" type="button">Produkt hinzufügen</button>
     </form>
+
+    <div id="hinzugefuegt-popup" class="einblenden">
+        <div class="hintergrund">
+            <p>Das Produkt wurde hinzugefügt</p>
+        </div>
+    </div>
+
+    <div id="vorhanden-popup" class="einblenden">
+            <div class="hintergrund">
+                <p>Die Artikelnummer ist bereits vorhanden</p>
+            </div>
+    </div>
+
+    <div id="leer-popup" class="einblenden">
+            <div class="hintergrund">
+                <p>Keine Artikelnummer eingegeben</p>
+            </div>
+    </div>
+
 </main>

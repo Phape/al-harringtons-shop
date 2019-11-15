@@ -7,6 +7,7 @@
   left: 50%;
   transform: translate(-50%);
   text-align: center;
+  max-width: inherit;
 }
 
 .label {
@@ -19,13 +20,16 @@
   /* font-size: 20px; */
   background: white;
   border: 2px solid rgb(0, 0, 0);
-  font-family: "monsterrat", sans-serif;
+  font-family: "monsterrat", sans-serif; /* Schrift ggf. nicht eingebunden */
   text-transform: uppercase;
   padding: 12px 20px;
   margin: 10px;
   cursor: pointer;
   transition: color 0.4s linear;
   position: relative;
+  border-radius: 5px;
+  background: rgb(37, 88, 148);
+  color: white;
 }
 
 #produkt-hinzufuegen:hover {
@@ -37,17 +41,94 @@
 input[type="text"] {
   padding: 0.5em;
   width: 25em;
+  max-width: 95%;
   box-sizing: border-box;
   border: 2px solid rgb(100, 100, 100);
   border-radius: 4px;
   background-color: white;
   box-shadow: 0px 0px 5px black;
+  margin-bottom: 10px;
 }
 
 input[type="text"]:focus {
-  border: 3px solid rgb(54, 146, 142);
+  border: 3px solid rgb(37, 88, 148);
 }
 
 .long-text {
   height: 10em;
 }
+
+	/** definiert das hinzugeuegt-popup Fenster **/
+  #hinzugefuegt-popup {
+    position:fixed;						/* Fixiert (scrollt nicht mit) Alternative "position:absolute;" */
+    width:400px;						/** Breite des Fensters **/
+    right: 100px;							/** Position von Links **/
+    top:30px;						/** Position von Oben **/
+    padding:10px;					/** Textabstand zum Fensterrand **/
+    color:rgb(0, 0, 0);					/** Textfarbe **/
+    font-size: 16px;					/** Schriftgröße **/
+    border-radius:10px;					/** Runde Ecken **/
+    border-width:2px;					/** Rahmenbreite **/
+    border-style:solid;					/** Positionstil **/
+    z-index:20000; 					/** Überlagerung **/
+    background-color:rgba(37, 89, 148, 0.5);
+  }
+  
+    /** definiert den Hintergrund der Texte **/
+  .hintergrund {
+    background: rgba(255, 255, 255, 0.8); 	/** Hintergrund Weiss, 80% Durchscheinend**/
+    padding:12px;						/** Textabstand zum Rand**/
+    border-radius:5px;					/** Runde Ecken **/
+    border-width:1px;					/** Rahmenstärke**/
+    border-style:solid;					/**Rahmenstil **/
+    border-color:rgb(37, 88, 148);				/** Rahmenfarbe **/
+    font-weight:bold;					/** Schrift Fett **/
+    margin:10px;						/** Abstand zum Fensterrand **/
+  }
+  
+    /** Definiert wann und wie das Fenster eingeblendet wird **/
+  .einblenden {
+  animation-name: einblenden;
+  animation-duration: 0.5s;				/** Gesammte Zeit der Animation **/
+  animation-iteration-count: 1;			/** Anzahl der Wiederholungen **/
+  animation-timing-function: ease-in-out;
+  }
+  @keyframes einblenden {
+  from {transform:translate(0, -500px);}		/** Startposition **/
+  50% {transform:translate(0, -500px);}		/** Position nach 50% der Zeit (0.5 Sec) **/
+  85% {transform:translate(0, 50px);}		/** Position nach 80% der Zeit (0.8 Sec) **/
+  to {transform: translate(0, -0px);} 		/** Endposition **/
+  }
+
+
+  /** definiert das vorhanden-popup Fenster **/
+  #vorhanden-popup {
+    position:fixed;						/* Fixiert (scrollt nicht mit) Alternative "position:absolute;" */
+    width:400px;						/** Breite des Fensters **/
+    right: 100px;							/** Position von Links **/
+    top:30px;						/** Position von Oben **/
+    padding:10px;					/** Textabstand zum Fensterrand **/
+    color:rgb(0, 0, 0);					/** Textfarbe **/
+    font-size: 16px;					/** Schriftgröße **/
+    border-radius:10px;					/** Runde Ecken **/
+    border-width:2px;					/** Rahmenbreite **/
+    border-style:solid;					/** Positionstil **/
+    z-index:20000; 					/** Überlagerung **/
+    background-color:rgba(255, 0, 0, 0.5);
+  }
+     
+   /** definiert das leer-popup Fenster **/
+   #leer-popup {
+    position:fixed;						/* Fixiert (scrollt nicht mit) Alternative "position:absolute;" */
+    width:400px;						/** Breite des Fensters **/
+    right: 100px;							/** Position von Links **/
+    top:30px;						/** Position von Oben **/
+    padding:10px;					/** Textabstand zum Fensterrand **/
+    color:rgb(0, 0, 0);					/** Textfarbe **/
+    font-size: 16px;					/** Schriftgröße **/
+    border-radius:10px;					/** Runde Ecken **/
+    border-width:2px;					/** Rahmenbreite **/
+    border-style:solid;					/** Positionstil **/
+    z-index:20000; 					/** Überlagerung **/
+    background-color:rgba(255, 0, 0, 0.5);
+  }

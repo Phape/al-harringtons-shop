@@ -36,9 +36,12 @@ class AddProduct {
         this._app.setPageContent(pageDom.querySelector("main"));
         // console.log("findeProdukt", await this._app.database.findeProdukt("1"));
 
-
         let addProductButton = document.getElementById("produkt-hinzufuegen");
         addProductButton.addEventListener("click", () => this._onAddButtonClicked());
+
+        document.querySelector("#hinzugefuegt-popup").style.display = "none";
+        document.querySelector("#leer-popup").style.display = "none";
+        document.querySelector("#vorhanden-popup").style.display = "none";
     }
 
     async _onAddButtonClicked() {
@@ -51,15 +54,25 @@ class AddProduct {
 
         let produkt = { artikelnummer, name, beschreibung, preis, besonderheit, bild_adresse };
 
-        let test = await this._app.database.pruefeVorhanden(artikelnummer);
-        if (test) {
-            window.alert("Artikelnummer bereits vorhanden")
+        let vorhanden = await this._app.database.pruefeVorhanden(artikelnummer);
+        if (artikelnummer == "") {
+            document.querySelector("#leer-popup").style.display = "block";
+            window.setTimeout(() => this._closePopup("#leer-popup"), 3000);
+        }
+        else if(vorhanden) {
+            document.querySelector("#vorhanden-popup").style.display = "block";
+            window.setTimeout(() => this._closePopup("#vorhanden-popup"), 3000);
         }
         else {
             this._app.database.speichereProdukt(produkt);
             document.querySelectorAll("input").forEach(element => element.value="");
-            window.alert("Produkt angelegt");
+            document.querySelector("#hinzugefuegt-popup").style.display = "block";
+            window.setTimeout(() => this._closePopup("#hinzugefuegt-popup"), 3000);
         }
+    }
+
+    _closePopup(popup) {
+        document.querySelector(popup).style.display = "none";
     }
 
 }

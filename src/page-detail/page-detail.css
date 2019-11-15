@@ -1,76 +1,118 @@
 /**
  * Stylesheet zur Klasse PageDetail: Detailseite der App
  */
+ main{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+ }
 
-.page-heading > div {
-    order: 1;
-    flex: 1;
-}
-.page-heading > img {
-    box-sizing: border-box;
-    width: 6em;
-    max-width: 100%;
+ .karte {
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background: white;
+    border-radius: 10px;
+    /* position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -65%); */
+ }
 
-    border: 1px solid lightgrey;
-    padding: 0.25em;
-    background: rgb(250, 250, 250);
+ .karte .bild {
+    box-flex: 1;
+    /* max-width: 50%; */
+    /* float: left; */
+    padding: 8px;
+    /* display: flex; */
+    flex-grow: 1;
+ }
 
-    order: 2;
-}
+ .karte .bild img {
+    width: 100%;
+    border-radius: 5px;
+ }
 
-.boat-info {
-    font-size: 90%;
-}
+ .karte .beschreibung {
+    box-flex: 1;
+    max-width: 50%;
+    /* float: right; */
+    
+    padding: 8px;
+    /* display: flex; */
+    flex-grow: 2;
+ }
+ 
+ .karte .beschreibung .beschriftung {
+    font-weight: bold;
+ }
 
-.boat-info .label {
-    color: darkgrey;
-    display: inline-block;
-}
-
-.boat-info .value {
-    display: inline-block;
-}
-
-@media (min-width: 50em) {
-    .page-heading {
-        display: flex;
-    }
-
-    .boat-info .field {
-        display: inline-block;
-        padding-right: 5em;
-    }
-}
-
-.tab-buttons {
-    margin-top: 1.5rem;
-    margin-bottom: calc(var(--content-padding) * -1);
-}
-
-main > img {
-    box-sizing: border-box;
-    width: 20em;
-    max-width: 100%;
-
-    border: 1px solid lightgrey;
-    padding: 0.25em;
-    background: rgb(250, 250, 250);
-}
+ .karte .beschreibung .wert {
+    margin-bottom: 10px;
+ }
 
 #add-to-warenkorb-button {
     /* font-size: 20px; */
-  background: white;
+  background: rgb(37, 88, 148);
   border: 2px solid rgb(0, 0, 0);
   font-family: "monsterrat", sans-serif;
+  color: white;
   text-transform: uppercase;
   padding: 12px 20px;
-  margin: 10px;
   cursor: pointer;
   transition: color 0.4s linear;
   position: relative;
+  border-radius: 5px;
+  float: right;
 }
 
 #add-to-warenkorb-button:hover {
     font-weight: bolder;
     box-shadow: 0px 0px 5px black;
   }
+
+
+	/** definiert das hinzugeuegt-popup Fenster **/
+    #hinzugefuegt-popup {
+        position:absolute;						/* Fixiert (scrollt nicht mit) Alternative "position:absolute;" */
+        width:400px;						/** Breite des Fensters **/
+        right: 100px;							/** Position von Links **/
+        top:30px;						/** Position von Oben **/
+        padding:10px;					/** Textabstand zum Fensterrand **/
+        color:rgb(0, 0, 0);					/** Textfarbe **/
+        font-size: 16px;					/** Schriftgröße **/
+        border-radius:10px;					/** Runde Ecken **/
+        border-width:2px;					/** Rahmenbreite **/
+        border-style:solid;					/** Positionstil **/
+        z-index:20000; 					/** Überlagerung **/
+        background-color:rgba(37, 89, 148, 0.5);
+      }
+      
+        /** definiert den Hintergrund der Texte **/
+      .hintergrund {
+        background: rgba(255, 255, 255, 0.8); 	/** Hintergrund Weiss, 80% Durchscheinend**/
+        padding:12px;						/** Textabstand zum Rand**/
+        border-radius:5px;					/** Runde Ecken **/
+        border-width:1px;					/** Rahmenstärke**/
+        border-style:solid;					/**Rahmenstil **/
+        border-color:rgb(37, 88, 148);				/** Rahmenfarbe **/
+        font-weight:bold;					/** Schrift Fett **/
+        margin:10px;						/** Abstand zum Fensterrand **/
+      }
+    
+        /** Definiert wann und wie das Fenster eingeblendet wird **/
+      .einblenden {
+      animation-name: einblenden;
+      animation-duration: 0.5s;				/** Gesammte Zeit der Animation **/
+      animation-iteration-count: 1;			/** Anzahl der Wiederholungen **/
+      animation-timing-function: ease-in-out;
+      }
+      @keyframes einblenden {
+      from {transform:translate(0, -500px);}		/** Startposition **/
+      50% {transform:translate(0, -500px);}		/** Position nach 50% der Zeit (0.5 Sec) **/
+      85% {transform:translate(0, 50px);}		/** Position nach 80% der Zeit (0.8 Sec) **/
+      to {transform: translate(0, -0px);} 		/** Endposition **/
+      }

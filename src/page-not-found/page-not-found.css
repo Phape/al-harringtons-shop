@@ -2,7 +2,57 @@
  * Stylesheet zur Klasse PageNotFound: Seite nicht gefunden
  */
 
-main img {
-    width: 20em;
-    max-width: 100%;
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.middle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.middle h1 {
+    font-size: 10em;
+    color: white;
+    text-shadow: 0 0 20px black;
+}
+
+.middle p {
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 15px black;
+
+}
+
+.middle #zur-startseite {
+    margin: 1em;
+}
+
+@media(max-width: 480px) {
+    .middle h1 {
+        font-size: 4em;
+    }
+}
+
+#zur-startseite {
+    /* font-size: 20px; */
+  background: rgb(37, 88, 148);
+  border: 2px solid rgb(0, 0, 0);
+  font-family: "monsterrat", sans-serif;
+  color: white;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: color 0.4s linear;
+  position: relative;
+  border-radius: 5px;
+  float: right;
+}
+
+#zur-startseite:hover {
+    font-weight: bolder;
+    box-shadow: 0px 0px 5px black;
+  }
